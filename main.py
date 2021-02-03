@@ -106,11 +106,9 @@ async def _bot(ctx):
 async def ping(ctx):
     """ Check Ping"""
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
-    author = ctx.message.author
-    embed.set_author(name=author.display_name, url="https://youtu.be/dQw4w9WgXcQ", icon_url=author.avatar_url)
     embed.title = "🌟 I have caught a star that you throw to me!"
     embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
-    embed.description = f"I catch it in {bot.latency}!"
+    embed.description = f"I catch it in {bot.latency} seconds!"
     await ctx.send(embed=embed)
 
 
