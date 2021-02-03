@@ -61,19 +61,19 @@ async def pfp(ctx):
     embed.description = "Your profile image"
     # embed.colour = "#FF5522"
     embed.set_author(name=author.display_name, url="https://youtu.be/dQw4w9WgXcQ", icon_url=author.avatar_url)
-    embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     embed.set_thumbnail(url=author.avatar_url)
     await ctx.send(embed=embed)
     # add color!
 
 
-@bot.command()
-async def saint(ctx):
-    await ctx.send('''
-    while True:
-        await ctx.send('https://tenor.com/view/saint-rock-head-shot-to-screen-smile-gif-19946978')''')
-    while True:
-        await ctx.send('https://tenor.com/view/saint-rock-head-shot-to-screen-smile-gif-19946978')
+# @bot.command()
+# async def saint(ctx):
+#     await ctx.send('''
+#     while True:
+#         await ctx.send('https://tenor.com/view/saint-rock-head-shot-to-screen-smile-gif-19946978')''')
+#     while True:
+#         await ctx.send('https://tenor.com/view/saint-rock-head-shot-to-screen-smile-gif-19946978')
 
 
 @bot.command()
@@ -107,7 +107,7 @@ async def ping(ctx):
     """ Check Ping"""
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = "🌟 I have caught a star that you throw to me!"
-    embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     embed.description = f"I catch it in {bot.latency} seconds!"
     await ctx.send(embed=embed)
 
@@ -120,7 +120,7 @@ async def help(ctx):
     help = '''
     **General Command**
     - !pfp : Sender's profile picture
-    - !saint : while True Saint's Emoji (You cannot stop it)
+    - !saint : while True Saint's Emoji (You cannot stop it) *(Disabled)*
     - !speedo : P'To SPEEEEEEEEEED
     - !genius : I'm genius!
     - !ping : Check ping
@@ -140,7 +140,7 @@ async def help(ctx):
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = "❓ Help"
     embed.description = help
-    embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
 
 
@@ -159,7 +159,7 @@ async def roots2(ctx, n1: float, n2: float):
     embed.description = "A roots of one-dimension polynomial (two numbers)"
     embed.add_field(name="Input", value=str(numpy.poly1d(num)), inline=False)
     embed.add_field(name="Results", value=str(answer), inline=False)
-    embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
 
 
@@ -176,7 +176,7 @@ async def roots3(ctx, n1: float, n2: float, n3: float):
     embed.description = "A roots of one-dimension polynomial (three numbers)"
     embed.add_field(name="Input", value=str(numpy.poly1d(num)), inline=False)
     embed.add_field(name="Results", value=str(answer), inline=False)
-    embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
 
 
@@ -193,7 +193,7 @@ async def roots4(ctx, n1: float, n2: float, n3: float, n4: float):
     embed.description = "A roots of one-dimension polynomial (four numbers)"
     embed.add_field(name="Input", value=str(numpy.poly1d(num)), inline=False)
     embed.add_field(name="Results", value=str(answer), inline=False)
-    embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
 
 
@@ -208,13 +208,13 @@ async def gif(ctx, word: str):
             embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
             embed.title = f"🔎 Result of GIF search '{word}'"
             embed.description = f"First GIF search result of *{word}*"
-            embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+            embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
             embed.set_image(url=result)
 
         else:
             embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
             embed.title = f"🥲 No result of GIF search '{word}'"
-            embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+            embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
             embed.description = "Sad"
         await ctx.send(embed=embed)
     except:
@@ -229,7 +229,7 @@ async def gif5(ctx, word: str):
         embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
         embed.title = f"🔎 Result of GIF search '{word}'"
         embed.description = f"Five top result in GIF search result of *{word}*\n **Result {i + 1}**"
-        embed.set_footer(text="Hello! My name is Kasumi! My father is HelloYeew#2740.")
+        embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
         embed.set_image(url=result[i])
         await ctx.send(embed=embed)
 
