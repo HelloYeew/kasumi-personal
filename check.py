@@ -47,7 +47,7 @@ def check_library():
 
 
 
-def check_internet(url='http://www.youtube.com', timeout=3):
+def check_internet(url='http://www.discord.com', timeout=3):
     try:
         urllib.request.urlopen(url, timeout=timeout)
         return True
