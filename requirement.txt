@@ -2,3 +2,5 @@ discord.py
 scipy
 numpy
 requests
+logging
+pandas

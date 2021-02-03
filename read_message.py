@@ -90,4 +90,4 @@ async def on_message(message):
             os.remove(file_location)  # Deleting the file
 
 
-client.run('NzYyMzQ3MzQ2OTkzMzQ4NjU5.X3n1Sw.ylfkQfhy8apR54vg4pi07gTQCsk')
+client.run(os.getenv("DISCORD_BOT_TOKEN"))
