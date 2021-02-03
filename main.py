@@ -23,7 +23,7 @@ description = "All Kasumi command is here"
 # put all API key and bot token here
 
 bot_token = os.getenv("DISCORD_BOT_TOKEN")
-tenor_token = "1KIIHSRZJ6TB"
+tenor_token = os.getenv("TENOR_TOKEN")
 
 intents = discord.Intents.default()
 intents.members = True
