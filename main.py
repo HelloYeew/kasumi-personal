@@ -86,6 +86,7 @@ async def speedo(ctx):
     await ctx.send('https://media.tenor.com/images/afc316d68f9cc2fd1dab30cea5b85450/tenor.gif')
     await ctx.send('https://media.tenor.co/videos/144c5f3300c50d2c33251483f2d910ee/mp4')
 
+
 @bot.group()
 async def cool(ctx):
     """Says if a user is cool.
@@ -117,7 +118,6 @@ async def ping(ctx):
     await ctx.send(embed=embed)
 
 
-
 # help command
 
 @bot.command()
@@ -144,6 +144,7 @@ async def help(ctx):
     
     **NSFW Command**
     - !pornhub (keyword1) (keyword2) : Get first search result from Pornhub
+    - !nhentai (keyword) : Get first search result from Pornhub
     '''
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = "❓ Help"
@@ -244,6 +245,7 @@ async def gif5(ctx, word: str):
         embed.set_image(url=result[i])
         await ctx.send(embed=embed)
 
+
 # NSFW Command
 
 @bot.command()
@@ -252,7 +254,7 @@ async def pornhub(ctx, word1: str, word2: str):
     if nsfw_mode == False:
         await ctx.send("You must enable NSFW command by **!nsfw on**")
     else:
-        result = pornhub_search(word1,word2)
+        result = pornhub_search(word1, word2)
         embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
         embed.title = f"🔎 Result of Pornhub search '{word1} {word2}'"
         embed.description = f"First GIF search result of *{word1} {word2}*"
@@ -264,38 +266,65 @@ async def pornhub(ctx, word1: str, word2: str):
         embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
         await ctx.send(embed=embed)
 
+
+@bot.command()
+async def nhentai(ctx, word: str):
+    """Return first search pornhub results"""
+    if nsfw_mode == False:
+        await ctx.send("You must enable NSFW command by **!nsfw on**")
+    else:
+        result = nhentai_search(word)
+        embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+        embed.title = f"🔎 Result of Nhentai search '{word}'"
+        embed.description = f"First Nhentai search result of *{word}*"
+        embed.add_field(name="Title", value=result.title, inline=False)
+        embed.add_field(name="Data Tag", value=result.data_tags, inline=False)
+        embed.add_field(name="Title ID", value=result.id, inline=True)
+        embed.add_field(name="Language", value=result.lang, inline=True)
+        embed.set_image(url=result.cover)
+        embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
+        await ctx.send(embed=embed)
+
+
 # SKE command
 
 link = MeetLink()
+
 
 @bot.command()
 async def discrete(ctx):
     """Return discrete math meet link"""
     await ctx.send(link.discrete_link)
 
+
 @bot.command()
 async def compro2(ctx):
     """Return compro2 math meet link"""
     await ctx.send(link.compro2_link)
+
 
 @bot.command()
 async def labphy2(ctx):
     """Return labphy2 math meet link"""
     await ctx.send(link.labphy2_link)
 
+
 @bot.command()
 async def math2(ctx):
     """Return math2 math meet link"""
     await ctx.send(link.math2_link)
+
 
 @bot.command()
 async def thaicom(ctx):
     """Return math2 math meet link"""
     await ctx.send(link.thaicom_link)
 
+
 @bot.command()
 async def essencom(ctx):
     """Return math2 math meet link"""
     await ctx.send(link.essencom_link)
+
 
 bot.run(bot_token)
