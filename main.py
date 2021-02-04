@@ -11,6 +11,7 @@ import requests
 import json
 from genius_command import *
 from tenor import *
+from nsfw import *
 import os
 
 # personal function
