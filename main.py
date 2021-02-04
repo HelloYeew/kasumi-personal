@@ -113,10 +113,28 @@ async def ping(ctx):
     """ Check Ping"""
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = "🌟 I have caught a star that you throw to me!"
+    embed.description = f"I catch it in {int(bot.latency * 1000)} milliseconds!"
     embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
-    embed.description = f"I catch it in {bot.latency} seconds!"
     await ctx.send(embed=embed)
 
+@bot.command()
+async def profile(ctx, member: discord.User):
+    author = ctx.message.author
+    embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+    if member.id == 729919152327753768 :
+        embed.title = f"🐵 {member.name + '#' + member.discriminator}'s Profile"
+    elif member.bot:
+        embed.title = f"🤖 {member.name + '#' + member.discriminator}'s Profile"
+    else:
+        embed.title = f"😃 {member.name + '#' + member.discriminator}'s Profile"
+    embed.description = f"Request by {author.display_name}"
+    embed.add_field(name="Display Name", value=member.display_name, inline=False)
+    embed.add_field(name="ID", value=member.id, inline=False)
+    embed.add_field(name="Create Account Time", value=f"{member.created_at} UTC", inline=False)
+    embed.add_field(name="Bot?", value=member.bot, inline=False)
+    embed.set_image(url=member.avatar_url)
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
+    await ctx.send(embed=embed)
 
 # help command
 
@@ -130,6 +148,7 @@ async def help(ctx):
     - !genius : I'm genius!
     - !ping : Check ping
     - !repeat (text_or_sth) (x) : Spam a text x time(s) *(Disabled)*
+    - !profile (user) : Show full user's profile
     
     **Genius Command**
     - !roots2 (float_x^1) (float_x^0) : Calculate a roots of one-dimension polynomial (two numbers)
@@ -284,6 +303,7 @@ async def nhentai(ctx, word: str):
         embed.set_image(url=result.cover)
         embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
         await ctx.send(embed=embed)
+
 
 
 # SKE command
