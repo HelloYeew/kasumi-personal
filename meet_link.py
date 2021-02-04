@@ -4,7 +4,7 @@ class MeetLink():
         self.compro2_link = "https://meet.google.com/lookup/gj2ldr23o2?authuser=1&hs=179"
         self.labphy2_link = "https://ku-edu.webex.com/join/teeraphat.wat"
         self.math2_link = "https://ku-edu.webex.com/ku-edu/j.php?MTID=me7301c58dad717e27416d69d0791b0c7"
-        self.thaicom_link = "https://meet.google.com/xor-sujk-pvz?pli=1&authuser=1"
+        self.thaicom_link = "https://meet.google.com/lookup/e4kct7qlb4"
         self.essencom_link = "https://ku-edu.webex.com/join/raksak.s"
 
     def discrete(self):

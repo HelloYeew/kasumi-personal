@@ -25,6 +25,10 @@ description = "All Kasumi command is here"
 bot_token = os.getenv("DISCORD_BOT_TOKEN")
 tenor_token = os.getenv("TENOR_TOKEN")
 
+# First Config
+
+nsfw_mode = True
+
 intents = discord.Intents.default()
 intents.members = True
 
@@ -136,6 +140,9 @@ async def help(ctx):
     - !labphy2 : Get a link for Laboratory in Physics II (453) Meet room
     - !math2 : Get a link for Math II Meet room
     - !thaicom : Get a link for Thai Communication Meet room
+    
+    **NSFW Command**
+    - !pornhub (keyword1) (keyword2) : Get first search result from Pornhub
     '''
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = "❓ Help"
@@ -202,10 +209,12 @@ async def roots4(ctx, n1: float, n2: float, n3: float, n4: float):
 @bot.command()
 async def gif(ctx, word: str):
     """Return first GIF search result"""
+    author = ctx.message.author
     try:
         result = tenor(tenor_token, word, 1)
         if result is not None:
             embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+            embed.set_author(name=author.display_name, url="https://youtu.be/dQw4w9WgXcQ", icon_url=author.avatar_url)
             embed.title = f"🔎 Result of GIF search '{word}'"
             embed.description = f"First GIF search result of *{word}*"
             embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
@@ -213,6 +222,7 @@ async def gif(ctx, word: str):
 
         else:
             embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+            embed.set_author(name=author.display_name, url="https://youtu.be/dQw4w9WgXcQ", icon_url=author.avatar_url)
             embed.title = f"🥲 No result of GIF search '{word}'"
             embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
             embed.description = "Sad"
@@ -233,6 +243,25 @@ async def gif5(ctx, word: str):
         embed.set_image(url=result[i])
         await ctx.send(embed=embed)
 
+# NSFW Command
+
+@bot.command()
+async def pornhub(ctx, word1: str, word2: str):
+    """Return first search pornhub results"""
+    if nsfw_mode == False:
+        await ctx.send("You must enable NSFW command by **!nsfw on**")
+    else:
+        result = pornhub_search(word1,word2)
+        embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+        embed.title = f"🔎 Result of Pornhub search '{word1} {word2}'"
+        embed.description = f"First GIF search result of *{word1} {word2}*"
+        embed.add_field(name="Name", value=result[1], inline=False)
+        embed.add_field(name="Link", value=result[0], inline=False)
+        embed.add_field(name="Duration", value=result[2], inline=True)
+        embed.add_field(name="Rating", value=result[3], inline=True)
+        embed.set_image(url=result[4])
+        embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
+        await ctx.send(embed=embed)
 
 # SKE command
 
