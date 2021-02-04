@@ -16,5 +16,6 @@ def pornhub_search(word1,word2):
 
 def nhentai_search(keyword):
     nhentai = NHentai()
-    SearchPage = nhentai.search(query='naruto', sort='popular', page=1)
-    return SearchPage.doujins[0]
+    SearchPage = nhentai.search(query=keyword, sort='popular', page=1)
+    result = SearchPage.doujins[0]
+    return result
