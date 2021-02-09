@@ -26,6 +26,7 @@ description = "All Kasumi command is here"
 bot_token = os.getenv("DISCORD_BOT_TOKEN")
 tenor_token = os.getenv("TENOR_TOKEN")
 
+
 # First Config
 
 nsfw_mode = True
@@ -43,7 +44,6 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     await bot.change_presence(activity=discord.Game('Finding a star!'))
-
 
 @bot.command()
 async def joined(ctx, member: discord.Member):
@@ -117,12 +117,15 @@ async def ping(ctx):
     embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
 
+
 @bot.command()
 async def profile(ctx, member: discord.User):
     author = ctx.message.author
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
-    if member.id == 729919152327753768 :
+    if member.id == 729919152327753768:
         embed.title = f"🐵 {member.name + '#' + member.discriminator}'s Profile"
+    elif member.id == 366066360075288577:
+        embed.title = f"😇 {member.name + '#' + member.discriminator}'s Profile"
     elif member.bot:
         embed.title = f"🤖 {member.name + '#' + member.discriminator}'s Profile"
     else:
@@ -136,6 +139,7 @@ async def profile(ctx, member: discord.User):
     embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
 
+
 @bot.command()
 async def about(ctx):
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
@@ -148,10 +152,11 @@ async def about(ctx):
     embed.description = "I'm Kasumi Toyama. I am finding a star that can make a music band with my friend. \n This bot is change for personal use."
     embed.add_field(name="GitHub Repositories", value="https://github.com/HelloYeew/kasumi", inline=False)
     embed.add_field(name="About My Father", value=father_info, inline=False)
-    embed.set_thumbnail(url = "https://github.com/HelloYeew/kasumi/blob/main/icon/kasumiicon.jpg?raw=true")
-    embed.add_field(name = "Under Development", value="I'm under development. My father have a lot of work to make "
-                                                      "me. If you find something wrong about me you can DM my father!")
+    embed.set_thumbnail(url="https://github.com/HelloYeew/kasumi/blob/main/icon/kasumiicon.jpg?raw=true")
+    embed.add_field(name="Under Development", value="I'm under development. My father have a lot of work to make "
+                                                    "me. If you find something wrong about me you can DM my father!")
     await ctx.send(embed=embed)
+
 
 # help command
 
@@ -341,7 +346,6 @@ async def nhentai(ctx, word: str):
             await ctx.send(embed=embed)
 
 
-
 # SKE command
 
 link = MeetLink()
@@ -381,6 +385,9 @@ async def thaicom(ctx):
 async def essencom(ctx):
     """Return math2 math meet link"""
     await ctx.send(link.essencom_link)
+
+
+
 
 
 bot.run(bot_token)
