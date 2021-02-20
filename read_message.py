@@ -50,7 +50,7 @@ async def on_message(message):
                     elif parameter[0] != "<":  # Channels are enveloped by "<>" as strings
                         limit = int(parameter)
             else:
-                limit = 10000
+                limit = 100
 
             answer = discord.Embed(title="Creating your Message History Dataframe",
                                    description="Please Wait. The data will be sent to you privately once it's finished.",

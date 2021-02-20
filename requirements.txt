@@ -1,7 +1,9 @@
 discord.py
 scipy
-numpy
-requests
-pandas
+numpy~=1.19.5
+requests~=2.25.1
+pandas~=1.2.1
 pornhubapi
 NHentai-API
+spotipy~=2.16.1
+logging~=0.4.9.6

@@ -12,6 +12,7 @@ import json
 from genius_command import *
 from tenor import *
 from nsfw import *
+from spotify import *
 import os
 
 # personal function
@@ -184,9 +185,13 @@ async def help(ctx):
     - !math2 : Get a link for Math II Meet room
     - !thaicom : Get a link for Thai Communication Meet room
     
+    **Spotify Command (Beta)**
+    - !spotify (keyword) : Get first search result from Spotify
+    
     **NSFW Command**
     - !pornhub (keyword1) (keyword2) : Get first search result from Pornhub
-    - !nhentai (keyword) : Get first search result from Pornhub
+    - !nhentai (keyword) : Get first search result from Nhentai
+    - !nhentai random : Get a random hentai from Nhentai
     '''
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = "❓ Help"
@@ -287,6 +292,25 @@ async def gif5(ctx, word: str):
         embed.set_image(url=result[i])
         await ctx.send(embed=embed)
 
+# Spotify Command
+
+@bot.command()
+async def spotify(ctx, *args):
+    keyword = " ".join(args[:])
+    search = spotify_first_search(keyword)
+    embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+    embed.title = f"🔎 Result of Spotify search '{keyword}'"
+    embed.description = f"First Spotify search result of *{keyword}*"
+    embed.add_field(name="Name", value=search['name'], inline=False)
+    embed.add_field(name="Artist", value=search['artist_name'], inline=False)
+    embed.add_field(name="Album Name", value=search['album_name'], inline=False)
+    embed.add_field(name="Available Country", value=search['available_country'], inline=False)
+    embed.add_field(name="Release Date", value=search['release_date'], inline=True)
+    embed.add_field(name="Popularity", value=search['popularity'], inline=True)
+    embed.add_field(name="Preview", value=search['preview_url'], inline=False)
+    embed.set_footer(text=f"Total result : {search['total_result']} | Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
+    embed.set_image(url=search["image_url"])
+    await ctx.send(embed=embed)
 
 # NSFW Command
 
@@ -307,8 +331,8 @@ async def pornhub(ctx, word1: str, word2: str):
         embed.set_image(url=result[4])
         embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
         await ctx.send(embed=embed)
-
-
+#
+#
 @bot.command()
 async def nhentai(ctx, word: str):
     """Return first search pornhub results"""
@@ -386,6 +410,23 @@ async def essencom(ctx):
     """Return math2 math meet link"""
     await ctx.send(link.essencom_link)
 
+@bot.command()
+async def midterm(ctx):
+    """Midterm test timetable"""
+    embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+    embed.title = f"📘 Midterm Test"
+    embed.description = f"Time to have some TEST!"
+    embed.add_field(name="Thursday 25 February", value="- Man and Society 16:30-19.30 (In Class 2 Choice with a meme)",
+                    inline=False)
+    embed.add_field(name="Monday 1 March", value="- Discrete Mathematics 13:00-16:00 (E503,E507)", inline=False)
+    embed.add_field(name="Tuesday 2 March", value="- Math II 13:00-16:00 (TBA)", inline=False)
+    embed.add_field(name="Thursday 4 March", value="- Computer Programming II 09:00-12.00 (E203, E204)",
+                    inline=False)
+    embed.add_field(name="Saturday 6 March", value="- Essential Computer 09:00-12.00 (Online)\n- Art Perception (Online)",
+                    inline=False)
+    embed.set_image(url="https://media.discordapp.net/attachments/804006192376315947/812229747626213406/152125627_3715784875168152_5671732948970309610_o.png?width=1121&height=504")
+    embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
+    await ctx.send(embed=embed)
 
 
 
