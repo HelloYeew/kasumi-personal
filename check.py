@@ -55,6 +55,16 @@ def check_library():
         subprocess.check_call([sys.executable, "-m", "pip", "install", 'spotipy'])
         print("Spotipy install complete!")
 
+    # check pytube
+    print("Checking pytube...")
+    try:
+        import pytube
+    except ImportError:
+        print("Pytube not found.")
+        print("Run install command : -m pip install pytube")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", 'pytube'])
+        print("Pytubeinstall complete!")
+
 
 
 def check_internet(url='http://www.discord.com', timeout=3):
