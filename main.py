@@ -28,6 +28,7 @@ bot_token = os.getenv("DISCORD_BOT_TOKEN")
 tenor_token = os.getenv("TENOR_TOKEN")
 
 
+
 # First Config
 
 nsfw_mode = True
@@ -184,12 +185,14 @@ async def help(ctx):
     - !labphy2 : Get a link for Laboratory in Physics II (453) Meet room
     - !math2 : Get a link for Math II Meet room
     - !thaicom : Get a link for Thai Communication Meet room
+    - !midterm : See midterm test schedule
+    - !drive : Get OneDrive link
     
     **Spotify Command (Beta)**
     - !spotify (keyword) : Get first search result from Spotify
     
     **NSFW Command**
-    - !pornhub (keyword1) (keyword2) : Get first search result from Pornhub
+    - !pornhub (keyword) : Get first search result from Pornhub
     - !nhentai (keyword) : Get first search result from Nhentai
     - !nhentai random : Get a random hentai from Nhentai
     '''
@@ -315,15 +318,16 @@ async def spotify(ctx, *args):
 # NSFW Command
 
 @bot.command()
-async def pornhub(ctx, word1: str, word2: str):
+async def pornhub(ctx, *args):
     """Return first search pornhub results"""
+    word = " ".join(args[:])
     if nsfw_mode == False:
         await ctx.send("You must enable NSFW command by **!nsfw on**")
     else:
-        result = pornhub_search(word1, word2)
+        result = pornhub_search(word)
         embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
-        embed.title = f"🔎 Result of Pornhub search '{word1} {word2}'"
-        embed.description = f"First GIF search result of *{word1} {word2}*"
+        embed.title = f"🔎 Result of Pornhub search '{word}'"
+        embed.description = f"First GIF search result of *{word}*"
         embed.add_field(name="Name", value=result[1], inline=False)
         embed.add_field(name="Link", value=result[0], inline=False)
         embed.add_field(name="Duration", value=result[2], inline=True)
@@ -334,12 +338,13 @@ async def pornhub(ctx, word1: str, word2: str):
 #
 #
 @bot.command()
-async def nhentai(ctx, word: str):
+async def nhentai(ctx, *args):
     """Return first search pornhub results"""
+    keyword = " ".join(args[:])
     if nsfw_mode == False:
         await ctx.send("You must enable NSFW command by **!nsfw on**")
     else:
-        if word == "random":
+        if keyword == "random":
             result = nhentai_random()
             embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
             embed.title = f"🔎 You have request random hentai from me?"
@@ -357,10 +362,10 @@ async def nhentai(ctx, word: str):
             embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
             await ctx.send(embed=embed)
         else:
-            result = nhentai_search(word)
+            result = nhentai_search(keyword)
             embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
-            embed.title = f"🔎 Result of Nhentai search '{word}'"
-            embed.description = f"First Nhentai search result of *{word}*"
+            embed.title = f"🔎 Result of Nhentai search '{keyword}'"
+            embed.description = f"First Nhentai search result of *{keyword}*"
             embed.add_field(name="Title", value=result.title, inline=False)
             embed.add_field(name="Data Tag", value=result.data_tags, inline=False)
             embed.add_field(name="Title ID", value=result.id, inline=True)
@@ -411,18 +416,23 @@ async def essencom(ctx):
     await ctx.send(link.essencom_link)
 
 @bot.command()
+async def drive(ctx):
+    """Return math2 math meet link"""
+    await ctx.send("https://1drv.ms/f/s!As4sE65K0j0JgqBI4-DrvEd6aiBWVw")
+
+@bot.command()
 async def midterm(ctx):
     """Midterm test timetable"""
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = f"📘 Midterm Test"
     embed.description = f"Time to have some TEST!"
-    embed.add_field(name="Thursday 25 February", value="- Man and Society 16:30-19.30 (In Class 2 Choice with a meme)",
+    embed.add_field(name=":white_check_mark: Thursday 25 February", value="- Man and Society 16:30-19.30 (In Class 2 Choice with a meme)",
                     inline=False)
-    embed.add_field(name="Monday 1 March", value="- Discrete Mathematics 13:00-16:00 (E503,E507)", inline=False)
+    embed.add_field(name="Monday 1 March", value="- Physics II Part 3 10:00-11:00 (Online)\n- Discrete Mathematics 13:00-16:00 (E503,E507)\nจด Note ตัวเองด้วยนะ", inline=False)
     embed.add_field(name="Tuesday 2 March", value="- Math II 13:00-16:00 (TBA)", inline=False)
     embed.add_field(name="Thursday 4 March", value="- Computer Programming II 09:00-12.00 (E203, E204)",
                     inline=False)
-    embed.add_field(name="Saturday 6 March", value="- Essential Computer 09:00-12.00 (Online)\n- Art Perception (Online)",
+    embed.add_field(name="Saturday 6 March", value="- Essential Computer 09:00-11.00 (Online)\n- Art Perception (Online)",
                     inline=False)
     embed.set_image(url="https://media.discordapp.net/attachments/804006192376315947/812229747626213406/152125627_3715784875168152_5671732948970309610_o.png?width=1121&height=504")
     embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")

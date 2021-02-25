@@ -2,8 +2,8 @@ import pornhub
 from NHentai import NHentai
 
 
-def pornhub_search(word1, word2):
-    keywords = [word1, word2]
+def pornhub_search(word):
+    keywords = [word]
     client = pornhub.PornHub(keywords)
     result = []
     for video in client.getVideos(10, page=2):
