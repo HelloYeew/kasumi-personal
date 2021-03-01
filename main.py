@@ -428,7 +428,7 @@ async def midterm(ctx):
     embed.description = f"Time to have some TEST!"
     embed.add_field(name=":white_check_mark: Thursday 25 February", value="- Man and Society 16:30-19.30 (In Class 2 Choice with a meme)",
                     inline=False)
-    embed.add_field(name="Monday 1 March", value="- Physics II Part 3 10:00-11:00 (Online)\n- Discrete Mathematics 13:00-16:00 (E503,E507)\nจด Note ตัวเองด้วยนะ", inline=False)
+    embed.add_field(name=":white_check_mark: Monday 1 March", value="- Physics II Part 3 10:00-11:00 (Online)\n- Discrete Mathematics 13:00-16:00 (E503,E507)\nจด Note ตัวเองด้วยนะ", inline=False)
     embed.add_field(name="Tuesday 2 March", value="- Math II 13:00-16:00 (TBA)", inline=False)
     embed.add_field(name="Thursday 4 March", value="- Computer Programming II 09:00-12.00 (E203, E204)",
                     inline=False)
