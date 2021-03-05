@@ -63,7 +63,7 @@ def check_library():
         print("Pytube not found.")
         print("Run install command : -m pip install pytube")
         subprocess.check_call([sys.executable, "-m", "pip", "install", 'pytube'])
-        print("Pytubeinstall complete!")
+        print("Pytube install complete!")
 
 
 
