@@ -19,7 +19,7 @@ def spotify_first_search(keyword):
     result_dict["image_url"] = results['tracks']['items'][0]['album']['images'][0]['url']
     result_dict["release_date"] = results['tracks']['items'][0]['album']['release_date']
     result_dict["popularity"] = results['tracks']['items'][0]['popularity']
-    result_dict["available_country"] = results['tracks']['items'][0]['available_markets']
+    result_dict["available_country"] = str(results['tracks']['items'][0]['available_markets'])[1:-1]
     result_dict["preview_url"] = results['tracks']['items'][0]['preview_url']
     result_dict["total_result"] = results['tracks']['total']
     return result_dict

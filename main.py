@@ -14,6 +14,8 @@ from tenor import *
 from nsfw import *
 from spotify import *
 import os
+from datetime import datetime
+import pytz
 
 # personal function
 from meet_link import *
@@ -26,7 +28,6 @@ description = "All Kasumi command is here"
 
 bot_token = os.getenv("DISCORD_BOT_TOKEN")
 tenor_token = os.getenv("TENOR_TOKEN")
-
 
 # First Config
 
@@ -45,6 +46,7 @@ async def on_ready():
     print(bot.user.id)
     print('------')
     await bot.change_presence(activity=discord.Game('Finding a star!'))
+
 
 @bot.command()
 async def joined(ctx, member: discord.Member):
@@ -159,6 +161,24 @@ async def about(ctx):
     await ctx.send(embed=embed)
 
 
+@bot.command()
+async def send(ctx, channel_id: int, *args):
+    channel = bot.get_channel(channel_id)
+    author = ctx.message.author
+    message = " ".join(args[:])
+    UTC = pytz.utc
+    await ctx.send(f"✉️ Sending your message to channel {channel_id}...")
+    embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
+    embed.title = f"✉️ Message from {author.display_name}"
+    embed.description = message
+    embed.set_footer(text=f"Send by Kasumi | Time : {datetime.now(UTC)} UTC")
+    try:
+        await channel.send(embed=embed)
+        await ctx.send("✅ Complete!")
+    except:
+        await ctx.send("❌ Error : Check your channel ID or I can't reach that channel because I'm not in that server.")
+
+
 # help command
 
 @bot.command()
@@ -172,6 +192,8 @@ async def help(ctx):
     - !ping : Check ping
     - !repeat (text_or_sth) (x) : Spam a text x time(s) *(Disabled)*
     - !profile (user) : Show full user's profile
+    - !send (channel_id) (message) : Send a message to a specific channel by a bot (You can target every channel that a bot can access)
+    - !gif (keyword) : Send first GIF search result of a keyword
     - !about : About this bot
     
     **Genius Command**
@@ -258,8 +280,9 @@ async def roots4(ctx, n1: float, n2: float, n3: float, n4: float):
 # tenor command zone
 
 @bot.command()
-async def gif(ctx, word: str):
+async def gif(ctx, *args):
     """Return first GIF search result"""
+    word = " ".join(args[:])
     author = ctx.message.author
     try:
         result = tenor(tenor_token, word, 1)
@@ -294,6 +317,7 @@ async def gif5(ctx, word: str):
         embed.set_image(url=result[i])
         await ctx.send(embed=embed)
 
+
 # Spotify Command
 
 @bot.command()
@@ -310,9 +334,11 @@ async def spotify(ctx, *args):
     embed.add_field(name="Release Date", value=search['release_date'], inline=True)
     embed.add_field(name="Popularity", value=search['popularity'], inline=True)
     embed.add_field(name="Preview", value=search['preview_url'], inline=False)
-    embed.set_footer(text=f"Total result : {search['total_result']} | Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
+    embed.set_footer(
+        text=f"Total result : {search['total_result']} | Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     embed.set_image(url=search["image_url"])
     await ctx.send(embed=embed)
+
 
 # NSFW Command
 
@@ -334,6 +360,8 @@ async def pornhub(ctx, *args):
         embed.set_image(url=result[4])
         embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
         await ctx.send(embed=embed)
+
+
 #
 #
 @bot.command()
@@ -414,10 +442,12 @@ async def essencom(ctx):
     """Return math2 math meet link"""
     await ctx.send(link.essencom_link)
 
+
 @bot.command()
 async def drive(ctx):
     """Return math2 math meet link"""
     await ctx.send("https://1drv.ms/f/s!As4sE65K0j0JgqBI4-DrvEd6aiBWVw")
+
 
 @bot.command()
 async def midterm(ctx):
@@ -425,19 +455,23 @@ async def midterm(ctx):
     embed = discord.Embed(color=discord.Color.from_rgb(222, 137, 127))
     embed.title = f"📘 Midterm Test"
     embed.description = f"Time to have some TEST!"
-    embed.add_field(name=":white_check_mark: Thursday 25 February", value="- Man and Society 16:30-19.30 (In Class 2 Choice with a meme)",
+    embed.add_field(name=":white_check_mark: Thursday 25 February",
+                    value="- Man and Society 16:30-19.30 (In Class 2 Choice with a meme)",
                     inline=False)
-    embed.add_field(name=":white_check_mark: Monday 1 March", value="- Physics II Part 3 10:00-11:00 (Online)\n- Discrete Mathematics 13:00-16:00 (E503,E507)\nจด Note ตัวเองด้วยนะ", inline=False)
+    embed.add_field(name=":white_check_mark: Monday 1 March",
+                    value="- Physics II Part 3 10:00-11:00 (Online)\n- Discrete Mathematics 13:00-16:00 (E503,E507)\nจด Note ตัวเองด้วยนะ",
+                    inline=False)
     embed.add_field(name=":white_check_mark: Tuesday 2 March", value="- Math II 13:00-15:00 (ห้องนอน)", inline=False)
-    embed.add_field(name=":white_check_mark: Thursday 4 March", value="- Computer Programming II 09:00-12.00 (E203, E204)",
+    embed.add_field(name=":white_check_mark: Thursday 4 March",
+                    value="- Computer Programming II 09:00-12.00 (E203, E204)",
                     inline=False)
-    embed.add_field(name="Saturday 6 March", value="- Essential Computer 09:00-11.00 (Online)\n- Art Perception (Online)",
+    embed.add_field(name=":white_check_mark: Saturday 6 March",
+                    value="- Essential Computer 09:00-11.00 (Online)\n- Art Perception (Online)",
                     inline=False)
-    embed.set_image(url="https://media.discordapp.net/attachments/804006192376315947/812229747626213406/152125627_3715784875168152_5671732948970309610_o.png?width=1121&height=504")
+    embed.set_image(
+        url="https://media.discordapp.net/attachments/804006192376315947/812229747626213406/152125627_3715784875168152_5671732948970309610_o.png?width=1121&height=504")
     embed.set_footer(text="Hello! My name is Kasumi Toyama! My father is HelloYeew#2740.")
     await ctx.send(embed=embed)
-
-
 
 
 bot.run(bot_token)
